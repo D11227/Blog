@@ -1,0 +1,17 @@
+@media screen and (max-width: 838px) {
+    .post {
+        margin: 0;
+        height: 200px;
+    }
+    .tags {
+        position: relative !important;
+        bottom: 0 !important;
+    }
+    .bar {
+        display: none;
+    }
+    #avatar, #img-1, #img-2 {
+        display: none;
+    }
+}
+Footer

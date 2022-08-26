@@ -1,0 +1,11 @@
+[
+        {
+                "id": "14341",
+                "title": "How did i build this blog ?",
+                "date": "January 1, 2019 at 12:00 PM",
+                "tags" : ["Blog Web", "Banana"],
+                "writer": "Silverboss",
+                "image": "images/blog.png",
+                "content": "<p>Yo, what's up guys it's Silverboss welcome to my new blog</p><p>This blog created with bootstrap 4 some javascript and jquery</p><p>So today, we are going to talk about how I created this blog. The first thing you need to create a blog for is to know how to code, you need to know something about html, css or a little bit of javascript, actually, i made this blog with bootstrap 4, html, css, js, jquery that's it, i used array for these posts</p><p>this is a bad blog tbh, i created this blog just for fun but if you need a better blog you need to know <br><br> front-end: html,css,js <br><br> back-end: php,java,sql</p><p>but !!!, you don't know programming, you don't know what should to do now !!?!?!?!?!?.</p><br><p>here some links create the website without coding</p><br><a href='https://www.wocode.com/blog'>WoCode</a><br><a href='https://www.wix.com/'>Wix</a><br><p>But I encourage you if you know how to code, then do it yourself, it's a good way to practice and improve</p><p>Okay, thanks to reading my post, this is my first post and it's very short</p>"
+        }
+]
