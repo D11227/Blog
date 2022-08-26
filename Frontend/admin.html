@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+        <head>
+                <meta charset="utf-8">
+                <script src="https://cdn.tiny.cloud/1/3v7o6s9lm801tflvzfurcj05sjkb0l69bkxh9stldsl1bj3q/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+                <title>Admin</title>
+        </head>
+        <body>
+                <div id="app" class="container">
+                        <form @submit.prevent="isAdmin()">
+                                <input class="form-control mt-3" placeholder="Username" v-model="username">
+                                <input class="form-control mt-3" placeholder="Password" v-model="password">
+                                <button class="btn btn-success mt-3">Login</button>
+                        </form>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+                <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" charset="utf-8"></script>
+                <script src="./scripts/fetch.js"></script>
+                <script src="./scripts/UI.js"></script>
+                <script>
+                        tinymce.init({
+                                selector: 'textarea',
+                                plugins: '3v7o6s9lm801tflvzfurcj05sjkb0l69bkxh9stldsl1bj3q',
+                                toolbar: '3v7o6s9lm801tflvzfurcj05sjkb0l69bkxh9stldsl1bj3q',
+                                toolbar_mode: 'floating',
+                                tinycomments_mode: 'embedded',
+                                tinycomments_author: 'Silverboss'
+                        });
+                </script>
+        </body>
+</html>

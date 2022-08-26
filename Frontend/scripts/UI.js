@@ -7,7 +7,7 @@ window.onload = function() {
                 data: {
                         currentScreen: 'home',
                         server: 'http://localhost:8080/api',
-                        email: '',
+                        username: '',
                         password: '',
                         posts: [],
                         content: ''
@@ -92,46 +92,48 @@ window.onload = function() {
                                         setTimeout(this.saveHTML(), 1000);
                                 }
                         },
-                        isAdmin: function() {
-                                fetch(`${this.server}/auth/login`, {
-                                                body: new URLSearchParams(`email=${this.email}&password=${this.password}`),
-                                                method: 'post'
-                                        })
-                                        .then(data => data.json())
-                                        .then(data => document.getElementById('app').innerHTML = data.html)
-                                        .then(() => {
-                                                tinymce.init({
-                                                        selector: 'textarea',
-                                                        plugins: '3v7o6s9lm801tflvzfurcj05sjkb0l69bkxh9stldsl1bj3q',
-                                                        toolbar: '3v7o6s9lm801tflvzfurcj05sjkb0l69bkxh9stldsl1bj3q',
-                                                        toolbar_mode: 'floating',
-                                                        tinycomments_mode: 'embedded',
-                                                        tinycomments_author: 'Silverboss'
-                                                });
-                                        });
-                        },
-                        uploadPost: function() {
-                                let img = document.getElementById('img').value;
-                                let title = document.getElementById('title').value;
-                                let tags = document.getElementById('tags').value;
-                                let writer = document.getElementById('writer').value;
-                                let content = tinymce.get("content").getContent();
-
-                                const formData = {
-                                        img: img,
-                                        title: title,
-                                        tags: tags,
-                                        writer: writer,
-                                        content: content
+                        isAdmin: async function() {
+                                const body = {
+                                        Username: this.username,
+                                        Password: this.password
                                 }
 
-                                fetch('http://localhost:3000/post/upload', {
-                                        body: JSON.stringify(formData),
-                                        headers: {
-                                                "Content-Type": "application/json"
-                                        },
-                                        method: 'post'
-                                });
+                                const [status, html] = await Fetch.post(`${this.server}/login`, body);
+                                if (html) {
+                                        document.getElementById('app').innerHTML = html;
+                                        tinymce.init({
+                                                selector: 'textarea',
+                                                plugins: '3v7o6s9lm801tflvzfurcj05sjkb0l69bkxh9stldsl1bj3q',
+                                                toolbar: '3v7o6s9lm801tflvzfurcj05sjkb0l69bkxh9stldsl1bj3q',
+                                                toolbar_mode: 'floating',
+                                                tinycomments_mode: 'embedded',
+                                                tinycomments_author: 'Silverboss'
+                                        });
+                                        toastr.success(status);
+                                } else {
+                                        toastr.error(status);
+                                }
+                        },
+                        uploadPost: async function() {
+                                const img = document.getElementById('img').value;
+                                const title = document.getElementById('title').value;
+                                const tags = document.getElementById('tags').value.split(' ');
+                                const writer = document.getElementById('writer').value;
+                                const content = tinymce.get("content").getContent();
+                                const currentDate = String(new Date());
+
+                                const body = {
+                                        Id: Math.random().toString(16).slice(2),
+                                        Image: img,
+                                        Title: title,
+                                        Tags: tags,
+                                        Writer: writer,
+                                        Content: content,
+                                        Date: currentDate.slice(0, currentDate.indexOf(' GMT'))
+                                }
+
+                                const [status] = await Fetch.post(`${this.server}/createPost`, body);
+                                toastr.success(status);
                         }
                 }
         });

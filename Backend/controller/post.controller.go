@@ -5,7 +5,6 @@ import (
         "io/ioutil"
         "encoding/json"
         "go-backend/models"
-        "github.com/gorilla/mux"
 )
 
 func GetPost(w http.ResponseWriter, r *http.Request)  {
@@ -17,12 +16,23 @@ func GetPost(w http.ResponseWriter, r *http.Request)  {
         json.NewEncoder(w).Encode(data)
 }
 
-func Create(w http.ResponseWriter, r *http.Request)  {
-        w.Header().Set("Context-Type", "application/x-www-form-urlencoded")
-        w.Header().Set("Access-Control-Allow-Origin", "*")
+func CreatePost(w http.ResponseWriter, r *http.Request)  {
+        w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+        w.Header().Set("Access-Control-Allow-Methods", "POST")
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
-        params := mux.Vars(r)
-        json.NewEncoder(w).Encode(params["id"])
+        if r.Method == "OPTIONS" {
+                return
+        }
+
+        post := models.POST{}
+
+        json.NewDecoder(r.Body).Decode(&post)
+
+        AddToDatabase(&post)
+
+        json.NewEncoder(w).Encode([]string { "Created post successfully!" })
 }
 
 func GetPostsList() []models.POST {
@@ -38,4 +48,21 @@ func GetPostsList() []models.POST {
         }
 
         return data
+}
+
+func AddToDatabase(post *models.POST)  {
+        data := GetPostsList()
+        data = append(data, *post)
+
+        file, err := json.MarshalIndent(data, "", " ")
+
+        if err != nil {
+                panic(err)
+        }
+
+        err = ioutil.WriteFile("./databases/posts.database.json", file, 0644)
+
+        if err != nil {
+                panic(err)
+        }
 }

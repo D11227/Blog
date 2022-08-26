@@ -1,22 +1,22 @@
 class Fetch {
-        static async get(url, options = 'application/json') {
+        static async get(url) {
                 const response = await fetch(url, {
                         method: 'GET',
                         headers: {
-                                'Content-Type': options
+                                'Content-Type': 'application/json'
                         }
                 });
                 return response.json()
         }
-        static async post(url, options = 'application/json', body = null) {
+        static async post(url, body = null) {
                 const response = await fetch(url, {
                         method: 'POST',
-                        mode: 'no-cors',
                         headers: {
-                                'Content-Type': options,
+                                'Content-Type': 'application/json',
                         },
                         body: (typeof body == 'object') && JSON.stringify(body)
                 });
+
                 return response.json()
         }
 }
