@@ -36,19 +36,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
                 return
         }
 
-        json.NewEncoder(w).Encode([]string { "Login successfully", `<div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">Img</span>
-                    </div>
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Img"
-                        aria-label="Img"
-                        aria-describedby="basic-addon1"
-                        name="img"
-                        id="img"
-                    />
+        json.NewEncoder(w).Encode([]string { "Login successfully", `
+        <div class="input-group mb-3 mt-3">
+                <input class="form-control" type="file" id="img">
                 </div>
                 <hr />
                 <div class="align-items-center mt-2">

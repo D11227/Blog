@@ -120,7 +120,7 @@ window.onload = function() {
                                 }
                         },
                         uploadPost: async function() {
-                                const img = document.getElementById('img').value;
+                                const img = await getBase64(document.getElementById('img').files[0]);
                                 const title = document.getElementById('title').value;
                                 const tags = document.getElementById('tags').value.split(' ');
                                 const writer = document.getElementById('writer').value;
@@ -145,3 +145,13 @@ window.onload = function() {
         loadTypeWritter();
         app.getPosts();
 }
+
+async function getBase64(file) {
+        return new Promise((res, rej) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                        res(reader.result);
+                };
+                reader.readAsDataURL(file);
+        });
+};
