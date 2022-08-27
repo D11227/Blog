@@ -11,17 +11,17 @@ function searchItems() {
 	searchItem.forEach((post) => {
            html = '';
 		   htmlTags = '';
-		   post.tags.split(' ').map((x) => htmlTags += `<p class="tag">${x}</p>`);
+		   post.Tags.map((x) => htmlTags += `<p class="tag">${x}</p>`);
 		   html += `
-	   	<div class="post" onclick="app.readPostBtn('${post.id}')">
+	   	<div class="post" onclick="app.readPostBtn('${post.Id}')">
 	   		<div class="tags" style="display:flex">
 	   			${htmlTags}
 	   		</div>
 	   		<div class="date">
-	   			<p>${post.date.replace('-', '/').split('T')[0].replace('-', '/')}</p>
+	   			<p>${post.Date}</p>
 	   		</div>
 	   		<div class="post-body">
-	   			<h4>${post.title}</h4>
+	   			<h4>${post.Title}</h4>
 	   		</div>
 	   	</div>
 	   	`;
@@ -33,6 +33,6 @@ function searchItems() {
 
 function filterItems(post) {
          return app.posts.filter(function(item) {
-            return item.title.toLowerCase().indexOf(post.toLowerCase()) > -1;
+            return item.Title.toLowerCase().indexOf(post.toLowerCase()) > -1;
      });
 }

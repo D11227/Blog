@@ -78,18 +78,23 @@ window.onload = function() {
             		  </div>
             	</div>
             	</div>
-            `
+            `;
                                 $('#post-blog')[0].innerHTML = html;
                                 $('#post-blog').css('display', 'block');
                                 setHeight('content');
                         },
                         back: function(screen) {
                                 loadPage();
+                                let previousScreen = this.currentScreen;
                                 this.currentScreen = screen;
+
                                 $('#post-blog').empty();
                                 $('#post-blog').css('display', 'none');
-                                if (screen == 'home') {
-                                        setTimeout(this.saveHTML(), 1000);
+                                if (screen === 'home') {
+                                        setTimeout(() => {
+                                                this.saveHTML();
+                                                if (previousScreen === 'post') loadTypeWritter();
+                                        }, 1000);
                                 }
                         },
                         isAdmin: async function() {

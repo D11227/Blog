@@ -4,14 +4,14 @@ import (
         "fmt"
         "log"
         "net/http"
-        "go-backend/router"
+        "go-backend/routers"
 )
 
 const port string = "8080"
 
 func main() {
-        r := router.Router()
+        r := routers.Router()
 
-        fmt.Printf("Server is running at localhost:%v\n", port)
+        fmt.Printf("Server is running at http://localhost:%v\n", port)
         log.Fatal(http.ListenAndServe(":" + port, r))
 }
